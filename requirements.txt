@@ -1,0 +1,10 @@
+numpy
+pandas
+scikit-learn
+tensorflow
+web3
+matplotlib
+seaborn
+jupyter
+python-dotenv
+pytest
