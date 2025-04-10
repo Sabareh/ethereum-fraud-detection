@@ -1,7 +1,7 @@
 # Detecting and Classifying Fraudulent Ethereum Accounts Using Machine Learning
 
 ## Overview
-This project implements a comprehensive system for detecting fraudulent accounts on the Ethereum blockchain using both supervised and unsupervised machine learning approaches. It analyzes transaction patterns, account behaviors, and network relationships to identify potential fraud with high accuracy.
+This project implements a comprehensive system for detecting fraudulent Ethereum accounts using both supervised and unsupervised machine learning techniques. It examines transaction patterns, account behaviors, and network interactions to uncover potential fraud.
 
 ## Features
 - Transaction pattern analysis
@@ -13,40 +13,34 @@ This project implements a comprehensive system for detecting fraudulent accounts
 
 ## Technology Stack
 - **Programming Language**: Python 3.8+
-- **ML Libraries**: 
-  - scikit-learn
-  - TensorFlow
-  - XGBoost
-- **Blockchain Integration**: 
-  - Web3.py
-  - Etherscan API
-- **Data Processing**: 
-  - Pandas
-  - NumPy
-- **Visualization**: 
-  - Matplotlib
-  - Seaborn
+- **ML Libraries**: scikit-learn, TensorFlow, XGBoost
+- **Blockchain Integration**: Web3.py, Etherscan API
+- **Data Processing**: Pandas, NumPy
+- **Visualization**: Matplotlib, Seaborn
 
 ## Installation
 
-1. Clone the repository
+1. Clone the repository:
 ```bash
 git clone https://github.com/sabare12/ethereum-fraud-detection.git
 cd ethereum-fraud-detection
 ```
 
-2. Set up virtual environment
+2. Set up the virtual environment:
 ```bash
 python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+# For Windows:
+venv\Scripts\activate
+# For Unix or MacOS:
+source venv/bin/activate
 ```
 
-3. Install dependencies
+3. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Configure environment variables
+4. Configure environment variables:
 ```bash
 cp .env.example .env
 # Edit .env with your API keys and configurations
@@ -54,32 +48,38 @@ cp .env.example .env
 
 ## Project Structure
 ```
-├── data/               # Data storage
-├── models/            # Trained models
-├── notebooks/         # Jupyter notebooks
-├── src/              # Source code
-├── tests/            # Unit tests
-└── docs/             # Documentation
+├── datasets/               # Raw and processed data
+├── src/
+│   ├── data/               # Data collection and preprocessing scripts
+│   │   ├── collect_data.py
+│   │   └── preprocess.py
+│   ├── models/             # Model training and fraud detection scripts
+│   │   ├── train.py
+│   │   └── detect.py
+│   └── utils/              # Utility functions and helpers
+├── notebooks/              # Jupyter notebooks for exploratory analysis
+├── tests/                  # Unit tests for the application
+└── docs/                   # Additional documentation and resources
 ```
 
 ## Usage
 
-1. Data Collection
+1. Data Collection:
 ```bash
 python src/data/collect_data.py
 ```
 
-2. Preprocessing
+2. Preprocessing:
 ```bash
 python src/data/preprocess.py
 ```
 
-3. Training Models
+3. Training Models:
 ```bash
 python src/models/train.py
 ```
 
-4. Running Detection
+4. Running Detection:
 ```bash
 python src/models/detect.py
 ```
@@ -90,18 +90,17 @@ python src/models/detect.py
 - Detection Speed: <2s per transaction
 
 ## Contributing
-1. Fork the repository
-2. Create a feature branch
-3. Commit changes
-4. Push to the branch
-5. Open a Pull Request
+1. Fork the repository.
+2. Create a feature branch.
+3. Commit your changes.
+4. Push the branch.
+5. Open a Pull Request.
 
 ## License
 MIT License
 
 ## Author
 Victor Oketch Sabare  
-SCT213-C002-0061/2021  
 Jomo Kenyatta University of Agriculture and Technology
 
 ## Acknowledgments
