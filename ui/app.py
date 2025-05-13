@@ -135,7 +135,7 @@ try:
             def load_df():
                 try:
                     csv_path = os.path.join(BASE_DIR, "Data", "address_data_combined.csv")
-                    st.info(f"Attempting to load data from: {csv_path}")
+                    st.info(f"Loading data from: {csv_path}")
                     if os.path.exists(csv_path):
                         df = pd.read_csv(csv_path)
                         return df.dropna()
