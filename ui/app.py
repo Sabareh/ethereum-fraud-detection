@@ -134,8 +134,29 @@ try:
             @st.cache_data
             def load_df():
                 try:
-                    df = pd.read_csv("../Data/address_data_combined.csv")
-                    return df.dropna()
+                    csv_path = os.path.join(BASE_DIR, "Data", "address_data_combined.csv")
+                    st.info(f"Attempting to load data from: {csv_path}")
+                    if os.path.exists(csv_path):
+                        df = pd.read_csv(csv_path)
+                        return df.dropna()
+                    else:
+                        st.error(f"CSV file not found at {csv_path}")
+                        # Try alternative locations
+                        alt_paths = [
+                            os.path.join(os.path.dirname(__file__), "..", "Data", "address_data_combined.csv"),
+                            os.path.join(BASE_DIR, "data", "address_data_combined.csv"),
+                            os.path.join(os.path.dirname(__file__), "data", "address_data_combined.csv")
+                        ]
+                        
+                        for path in alt_paths:
+                            st.info(f"Trying alternative path: {path}")
+                            if os.path.exists(path):
+                                df = pd.read_csv(path)
+                                st.success(f"Successfully loaded data from: {path}")
+                                return df.dropna()
+                        
+                        # If all paths failed, return empty dataframe
+                        raise FileNotFoundError(f"Could not find CSV file in any expected location")
                 except Exception as e:
                     st.error(f"Error loading CSV: {str(e)}")
                     # Return empty dataframe with sample columns
@@ -143,7 +164,8 @@ try:
                         'Address': ['0x...'],
                         'FLAG': [0],
                         'Sent tnx': [0],
-                        'Received tnx': [0]
+                        'Received tnx': [0],
+                        'total transactions (including tnx to create contract': [0]
                     })
             df = load_df()
 
