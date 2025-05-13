@@ -10,6 +10,7 @@ This project implements a comprehensive system for detecting fraudulent Ethereum
 - Hybrid ML approach (supervised + unsupervised)
 - Real-time detection capabilities
 - Performance analytics dashboard
+- Unsupervised clustering: OPTICS, K-Means, Hierarchical, GaussianMixture, DBSCAN, Birch, AffinityPropagation
 
 ## Technology Stack
 - **Programming Language**: Python 3.8+
@@ -51,14 +52,21 @@ cp .env.example .env
 ├── datasets/               # Raw and processed data
 ├── src/
 │   ├── data/               # Data collection and preprocessing scripts
-│   │   ├── collect_data.py
-│   │   └── preprocess.py
 │   ├── models/             # Model training and fraud detection scripts
-│   │   ├── train.py
-│   │   └── detect.py
 │   └── utils/              # Utility functions and helpers
 ├── notebooks/              # Jupyter notebooks for exploratory analysis
+│   ├── Exploratory.ipynb
+│   └── Unsupervised ML Models/  # clustering/anomaly notebooks
+│       ├── OPTICS_Unsupervised.ipynb
+│       ├── KMeans_Unsupervised.ipynb
+│       ├── Hierarchical_Unsupervised.ipynb
+│       ├── GaussianMixture_Unsupervised.ipynb
+│       ├── DBSCAN_Unsupervised.ipynb
+│       ├── Birch_Unsupervised.ipynb
+│       └── AffinityPropagation_Unsupervised.ipynb
 ├── tests/                  # Unit tests for the application
+├── ui/                     # Streamlit user interface
+│   └── streamlit_app.py
 └── docs/                   # Additional documentation and resources
 ```
 
@@ -83,6 +91,31 @@ python src/models/train.py
 ```bash
 python src/models/detect.py
 ```
+
+5. Running the Streamlit Interface:
+
+### a) UI version under `ui/`  
+```bash
+streamlit run ui/streamlit_app.py
+```
+
+### b) (Legacy) top-level app  
+```bash
+streamlit run streamlit_app.py
+```
+
+6. Unsupervised Analysis:
+Open and run any notebook under `notebooks/Unsupervised ML Models/` to explore clustering-based anomaly detection.
+
+7. (Optional) Models scripts:
+- **Train & save** models (if implemented):  
+  ```bash
+  python models/save_models.py
+  ```  
+- **Predict** using saved models (if implemented):  
+  ```bash
+  python models/predict.py
+  ```
 
 ## Model Performance
 - Accuracy: 85%+
