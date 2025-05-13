@@ -134,7 +134,7 @@ try:
             @st.cache_data
             def load_df():
                 try:
-                    df = pd.read_csv("../Data/address_data_k.csv")
+                    df = pd.read_csv("../Data/address_data_combined.csv")
                     return df.dropna()
                 except Exception as e:
                     st.error(f"Error loading CSV: {str(e)}")
