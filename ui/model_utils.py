@@ -48,7 +48,7 @@ def load_data(use_synthetic=False):
         try:
             # Attempt to load the real dataset
             # Adjust paths as needed for your environment
-            data_path = os.path.join("..", "Data", "address_data_k.csv")
+            data_path = os.path.join("..", "Data", "address_data_combined.csv")
             df = pd.read_csv(data_path)
             
             # Extract features and target
