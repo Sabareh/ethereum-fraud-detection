@@ -147,16 +147,16 @@ python src/models/detect.py
 
 ### a) UI version under `ui/`  
 ```bash
-streamlit run ui/streamlit_app.py
+streamlit run ui/app.py
 ```
 
 ### b) (Legacy) top-level app  
 ```bash
-streamlit run streamlit_app.py
+streamlit run app.py
 ```
 
 6. Unsupervised Analysis:
-Open and run any notebook under `notebooks/Unsupervised ML Models/` to explore clustering-based anomaly detection.
+Open and run any notebook under `Unsupervised ML Models/` to explore clustering-based anomaly detection.
 
 7. (Optional) Models scripts:
 - **Train & save** models (if implemented):  
