@@ -270,10 +270,10 @@ try:
             st.markdown("""
             ### Sent Transactions Distribution
             
-            This histogram shows the distribution of sent transactions across addresses, revealing:
+            This histogram shows the distribution of transaction counts across addresses, revealing:
             
-            - **Right-skewed distribution**: Most addresses have a relatively small number of sent transactions
-            - **Long tail**: A small number of addresses have an extremely high volume of sent transactions
+            - **Right-skewed distribution**: Most addresses have a relatively small number of transactions
+            - **Long tail**: A small number of addresses have an extremely high volume of transactions
             - **Behavioral pattern**: Different patterns between normal users and potential service providers or exchanges
             
             The logarithmic density curve helps visualize the distribution across different scales of activity.
@@ -283,21 +283,39 @@ try:
             **Key insight**: Many fraudulent addresses show unusually low transaction counts, possibly indicating 
             single-purpose fraud accounts that are abandoned after use.
             """)
+            
             # Fix matplotlib deprecation warnings by using object-oriented interface
             fig1, ax1 = plt.subplots()
-            sns.histplot(data=df, x='Sent tnx', bins=50, kde=True, ax=ax1)
-            ax1.set_xlabel("Number of Sent Transactions")
-            ax1.set_ylabel("Frequency")
-            st.pyplot(fig1)
+            
+            # Check column exists and use appropriate fallback
+            if 'Sent tnx' in df.columns:
+                transaction_col = 'Sent tnx'
+            elif 'total transactions (including tnx to create contract' in df.columns:
+                transaction_col = 'total transactions (including tnx to create contract'
+            else:
+                # Find any column that might contain transaction counts
+                possible_cols = [col for col in df.columns if 'transaction' in str(col).lower() or 'tnx' in str(col).lower()]
+                transaction_col = possible_cols[0] if possible_cols else 'FLAG'  # Use FLAG as fallback if nothing else available
+                st.warning(f"Column 'Sent tnx' not found, using '{transaction_col}' instead")
+            
+            try:
+                sns.histplot(data=df, x=transaction_col, bins=50, kde=True, ax=ax1)
+                ax1.set_xlabel(f"Number of Transactions ({transaction_col})")
+                ax1.set_ylabel("Frequency")
+                st.pyplot(fig1)
+            except Exception as e:
+                st.error(f"Error creating transaction histogram: {str(e)}")
+                st.info("Try examining the dataset columns first to identify the correct transaction count column.")
+                st.write("Available columns:", df.columns.tolist())
 
             st.markdown("""
             ### Additional Transaction Volume Insights
             
-            * **Low volume fraud**: {:.1%} of fraudulent addresses have fewer than 5 sent transactions
+            * **Low volume fraud**: Many fraudulent addresses have fewer than 5 transactions
             * **High volume patterns**: Legitimate addresses show more consistent transaction patterns over time
             * **Burst patterns**: Many fraudulent addresses show "burst" patterns - high activity in short time periods
             * **Transaction-to-age ratio**: The ratio of transaction count to address age is a strong fraud indicator
-            """.format(len(df[(df['Sent tnx'] < 5) & (df['FLAG'] == 1)]) / len(df[df['FLAG'] == 1])))
+            """)
 
             st.subheader("Feature Correlation Analysis")
             st.markdown("""
