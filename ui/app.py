@@ -2114,27 +2114,9 @@ Response:
                 1. **Federated learning**: Enable model improvements without sharing raw transaction data
                 2. **Differential privacy**: Apply noise to features when appropriate
                 3. **Zero-knowledge proofs**: Support privacy-preserving verification where applicable
+
                 
-                ### 6.8 Cost Analysis
-                
-                #### Resource Requirements
-                
-                | Component | Specifications | Est. Monthly Cost |
-                |-----------|----------------|------------------|
-                | API servers | 4× c5.xlarge (AWS) | $560 |
-                | Database | r5.2xlarge + 2TB storage | $820 |
-                | Model training | Weekly p3.2xlarge usage | $240 |
-                | Data ingestion | Kafka cluster (3 nodes) | $450 |
-                | Monitoring | CloudWatch / custom metrics | $130 |
-                | **Total** | | **$2,200/month** |
-                
-                #### Optimization Opportunities
-                
-                - Reserved instances: 40% cost reduction with 1-year commitment
-                - Spot instances for batch training: 70% savings on training costs
-                - Auto-scaling: Match capacity to demand patterns
-                
-                ### 6.9 Implementation Roadmap
+                ### 6.8 Implementation Roadmap
                 
                 We recommend a phased deployment approach:
                 
@@ -2161,7 +2143,7 @@ Response:
                 """)
 
     if __name__ == "__main__":
-        # Suppress warnings in streamlit
+        # Suppress warnings in streamlita
         warnings.filterwarnings("ignore")
         # Run the app with error handling
         try:
