@@ -56,7 +56,7 @@ def render_home_page():
 
     ### Experimental Results and Findings
     My models have been rigorously evaluated using a dataset comprising:
-    - 9,841 labeled Ethereum addresses (2,179 fraudulent, 7,662 legitimate)
+    - 14,155 labeled Ethereum addresses (5,179 fraudulent, 8,662 legitimate)
     - Approximately 3.2 million transaction records spanning from the Ethereum genesis block to present
     - Six distinct fraud taxonomies: phishing, Ponzi schemes, scam tokens, fraudulent ICOs, money laundering, and market manipulation
 
