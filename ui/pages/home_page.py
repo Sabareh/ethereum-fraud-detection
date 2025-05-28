@@ -16,7 +16,7 @@ def render_home_page():
     3. To what extent can unsupervised anomaly detection methods complement supervised classification approaches in fraud identification?
 
     ### Methodological Framework
-    Our analytical approach employs a multi-layered detection architecture:
+    My analytical approach employs a multi-layered detection architecture:
 
     1. **Data Acquisition and Preprocessing**:
        - Extraction of on-chain data from Ethereum nodes via JSON-RPC endpoints
@@ -55,7 +55,7 @@ def render_home_page():
        - **Model Interpretation**: Feature importance analysis using SHAP values and partial dependence plots
 
     ### Experimental Results and Findings
-    Our models have been rigorously evaluated using a dataset comprising:
+    My models have been rigorously evaluated using a dataset comprising:
     - 9,841 labeled Ethereum addresses (2,179 fraudulent, 7,662 legitimate)
     - Approximately 3.2 million transaction records spanning from the Ethereum genesis block to present
     - Six distinct fraud taxonomies: phishing, Ponzi schemes, scam tokens, fraudulent ICOs, money laundering, and market manipulation
