@@ -4,18 +4,18 @@ import sys
 import os
 from pathlib import Path
 
-# Add fallback for missing experimental_rerun (Streamlit version compatibility)
-if not hasattr(st, "experimental_rerun"):
+# Add fallback for missing rerun (Streamlit version compatibility)
+if not hasattr(st, "rerun"):
     try:
-        def experimental_rerun():
+        def rerun():
             # Fallback: stop the script to allow rerun on next interaction
             st.stop()
-        st.experimental_rerun = experimental_rerun
+        st.rerun = rerun
     except ImportError:
-        def experimental_rerun():
+        def rerun():
             # Fallback: stop the script to allow rerun on next interaction
             st.stop()
-        st.experimental_rerun = experimental_rerun
+        st.rerun = rerun
 
 # Add the current directory to the Python path
 current_dir = Path(__file__).resolve().parent
@@ -126,7 +126,7 @@ try:
             for display_name, page_name in nav_buttons.items():
                 if st.button(display_name, key=f"nav_{page_name}", use_container_width=True):
                     st.session_state.current_page = page_name
-                    st.experimental_rerun()
+                    st.rerun()
             
             # Highlight current page
             current_display = None
@@ -235,19 +235,19 @@ try:
                 with col1:
                     if st.button("🏠 Home", key="emergency_home"):
                         st.session_state.current_page = "Home"
-                        st.experimental_rerun()
+                        st.rerun()
                 with col2:
                     if st.button("📊 Data", key="emergency_data"):
                         st.session_state.current_page = "Data Management"
-                        st.experimental_rerun()
+                        st.rerun()
                 with col3:
                     if st.button("📈 EDA", key="emergency_eda"):
                         st.session_state.current_page = "EDA Overview"
-                        st.experimental_rerun()
+                        st.rerun()
                 with col4:
                     if st.button("🤖 Models", key="emergency_models"):
                         st.session_state.current_page = "Supervised"
-                        st.experimental_rerun()
+                        st.rerun()
 
         # Custom footer
         st.markdown("---")
@@ -275,15 +275,15 @@ try:
             col1, col2, col3 = st.columns(3)
             with col1:
                 if st.button("🔄 Reload Application", key="emergency_reload"):
-                    st.experimental_rerun()
+                    st.rerun()
             with col2:
                 if st.button("🏠 Go to Home", key="emergency_goto_home"):
                     st.session_state.current_page = "Home"
-                    st.experimental_rerun()
+                    st.rerun()
             with col3:
                 if st.button("🗑️ Clear Cache", key="emergency_clear_cache"):
                     st.cache_data.clear()
-                    st.experimental_rerun()
+                    st.rerun()
             
             # Show full error for debugging
             with st.expander("🔧 Full Error Details"):
@@ -317,4 +317,4 @@ except Exception as critical_error:
     """)
     
     if st.button("🔄 Attempt Recovery", key="critical_recovery"):
-        st.experimental_rerun()
+        st.rerun()
