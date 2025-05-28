@@ -4,6 +4,19 @@ import sys
 import os
 from pathlib import Path
 
+# Add fallback for missing experimental_rerun (Streamlit version compatibility)
+if not hasattr(st, "experimental_rerun"):
+    try:
+        def experimental_rerun():
+            # Fallback: stop the script to allow rerun on next interaction
+            st.stop()
+        st.experimental_rerun = experimental_rerun
+    except ImportError:
+        def experimental_rerun():
+            # Fallback: stop the script to allow rerun on next interaction
+            st.stop()
+        st.experimental_rerun = experimental_rerun
+
 # Add the current directory to the Python path
 current_dir = Path(__file__).resolve().parent
 sys.path.append(str(current_dir))
