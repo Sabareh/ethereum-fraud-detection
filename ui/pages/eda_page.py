@@ -24,7 +24,7 @@ def render_eda_page():
     # Exploratory Data Analysis for Ethereum Fraud Detection
     
     This page presents a comprehensive exploratory data analysis of Ethereum transaction data used for fraud detection.
-    The dataset contains 9,841 Ethereum addresses with 51 features extracted from on-chain transaction behaviors.
+    The dataset contains 14,155 Ethereum addresses with 51 features extracted from on-chain transaction behaviors.
     Our analysis examines the relationships between various transaction patterns and fraudulent activity to inform 
     feature engineering and modeling approaches.
     """)
